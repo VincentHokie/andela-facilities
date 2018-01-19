@@ -36,18 +36,6 @@ class UserProxy(User):
         self.save()
 
 
-class BaseInfo(models.Model):
-    """Base class containing all models common information."""
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        """Define Model as abstract."""
-
-        abstract = True
-
-
 class GoogleUser(models.Model):
     google_id = models.CharField(max_length=60, unique=True)
 
