@@ -24,12 +24,12 @@ class UserProxy(User):
                 idinfo: data passed in from post method.
         """
         data = {
-                "username": idinfo['name'],
-                "email" : idinfo["email"],
-                "first_name" :idinfo['given_name'],
-                "last_name" :idinfo['family_name']
-            }
-            
+            "username": idinfo['name'],
+            "email": idinfo["email"],
+            "first_name": idinfo['given_name'],
+            "last_name": idinfo['family_name']
+        }
+
         for field in data:
             if getattr(self, field) != data[field] and data[field] != '':
                 setattr(self, field, data[field])
@@ -43,22 +43,20 @@ class GoogleUser(models.Model):
                                     on_delete=models.CASCADE)
     appuser_picture = models.TextField()
 
-
     def check_diff(self, idinfo):
         """Check for differences between request/idinfo and model data.
             Args:
                 idinfo: data passed in from post method.
         """
         data = {
-                "appuser_picture": idinfo['picture']
-            }
+            "appuser_picture": idinfo['picture']
+        }
 
         for field in data:
             if getattr(self, field) != data[field] and data[field] != '':
                 setattr(self, field, data[field])
         self.save()
 
-
     def __unicode__(self):
-        return "%s %s" % (self.app_user.first_name,
-                          self.app_user.last_name)
+        return "%s %s" % (
+            self.app_user.first_name, self.app_user.last_name)

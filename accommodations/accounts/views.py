@@ -27,7 +27,6 @@ class GoogleRegisterView(APIView):
 
     def get_oauth_token(self, userproxy):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        print(api_settings.JWT_PAYLOAD_HANDLER)
         jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
         payload = jwt_payload_handler(userproxy)
         token = jwt_encode_handler(payload)
@@ -42,13 +41,15 @@ class GoogleRegisterView(APIView):
         return body
 
     def post(self, request, format=None):
-        
+
+        # pass token to get google info/ an error if the checks dont pass
         idinfo = resolve_google_oauth(request)
 
         try:
             if type(idinfo.data) == type(dict()):
                 return Response(idinfo.data)
         except Exception as e:
+            # handle error here for when it comes from resolve_google_oauth()
             pass
 
         # check if it is a returning user.
@@ -79,7 +80,8 @@ class GoogleRegisterView(APIView):
                                      appuser_picture=idinfo['picture'])
             google_user.save()
 
-        # automatically get token for the created/returning user and log them in:
+        # automatically get token for the created/returning
+        # user and log them in:
         body = self.get_oauth_token(userproxy)
         return Response(body, status=status.HTTP_201_CREATED)
 

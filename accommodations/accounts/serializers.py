@@ -19,4 +19,3 @@ class GoogleUserSerializer(serializers.ModelSerializer):
         model = GoogleUser
         fields = ('google_id', 'app_user', 'appuser_picture')
         depth = 1
-
