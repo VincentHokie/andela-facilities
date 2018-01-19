@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.urls import reverse
 
 from rest_framework import status
@@ -68,6 +68,12 @@ class GoogleRegisterView(APIView):
                 last_name=idinfo['family_name']
             )
             userproxy.save()
+
+            # ensure every new user is given the least rights i.e.
+            # those of a fellow
+            my_group = Group.objects.get(name='Fellow')
+            my_group.user_set.add(userproxy)
+
             google_user = GoogleUser(google_id=idinfo['sub'],
                                      app_user=userproxy,
                                      appuser_picture=idinfo['picture'])
