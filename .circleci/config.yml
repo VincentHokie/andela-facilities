@@ -43,7 +43,7 @@ jobs:
           name: run tests
           command: |
             . venv-django/bin/activate
-            python manage.py test
+            python accommodations/manage.py test
       - store_artifacts:
           path: test-reports
           destination: test-reports
