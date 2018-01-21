@@ -40,13 +40,12 @@ def resolve_google_oauth(request):
         # if all the above checks pass, user information
         # is returned for processing
         if idinfo['hd'] == 'andela.com' and \
-                idinfo['email_verified'] == True and \
+                idinfo['email_verified'] is True and \
                 idinfo['aud'] == CLIENT_ID:
             return idinfo
 
     # token is not valid and google threw an exception
     except crypt.AppIdentityError:
         return unauthorized('Invalid Token')
-
 
     return idinfo

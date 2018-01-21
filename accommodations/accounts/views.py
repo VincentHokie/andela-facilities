@@ -46,7 +46,7 @@ class GoogleRegisterView(APIView):
         idinfo = resolve_google_oauth(request)
 
         try:
-            if type(idinfo.data) == type(dict()):
+            if isinstance(idinfo.data, dict()):
                 return Response(idinfo.data)
         except Exception as e:
             # handle error here for when it comes from resolve_google_oauth()
