@@ -20,3 +20,4 @@ script: python manage.py test
 
 after_success:
     - coveralls
+ 
