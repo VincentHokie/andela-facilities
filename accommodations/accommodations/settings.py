@@ -98,7 +98,10 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '',
         'PORT': 5432,
-        'TEST': {'CHARSET': 'UTF8'}
+        'TEST': {
+            'CHARSET': 'UTF8',
+            'NAME': 'accommodations_test_db'
+        }
     }
 }
 
