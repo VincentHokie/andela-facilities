@@ -41,13 +41,6 @@ jobs:
           key: v1-dependencies-{{ checksum "requirements.txt" }}
         
       # run tests!
-      - run: 
-          name: Set up DB
-          command: |
-            psql -c 'create database accommodations_test_db;' -U postgres
-            python accommodations/manage.py migrate
-          environment:
-            DATABASE_URL: "postgres://postgres@localhost:5432/db_name"
 
       - run:
           name: run tests
@@ -55,7 +48,7 @@ jobs:
             . venv-django/bin/activate
             python accommodations/manage.py test
           environment:
-            DATABASE_URL: "postgres://ubuntu@localhost:5432/db_name"
+            DATABASE_URL: "postgres://ubuntu@localhost:5432/accommodations_test_db"
       - store_artifacts:
           path: test-reports
           destination: test-reports
