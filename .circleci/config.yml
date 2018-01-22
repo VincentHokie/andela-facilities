@@ -46,8 +46,8 @@ jobs:
           command: |
             psql -c 'create database accommodations_test_db;' -U postgres
             python accommodations/manage.py migrate
-        environment:
-          DATABASE_URL: "postgres://postgres@localhost:5432/db_name"
+          environment:
+            DATABASE_URL: "postgres://postgres@localhost:5432/db_name"
 
       - run:
           name: run tests
