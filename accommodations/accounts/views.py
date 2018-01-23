@@ -14,8 +14,8 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from .setpagination import LimitOffsetpage
-from .models import (GoogleUser, UserProxy)
-from .serializers import (GoogleUserSerializer, UserSerializer)
+from .models import User
+from .serializers import UserSerializer
 
 from .utils import resolve_google_oauth
 from .errors import unauthorized
@@ -25,13 +25,13 @@ class GoogleRegisterView(APIView):
 
     permission_classes = (AllowAny,)
 
-    def get_oauth_token(self, userproxy):
+    def get_oauth_token(self, user):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
         jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-        payload = jwt_payload_handler(userproxy)
+        payload = jwt_payload_handler(user)
         token = jwt_encode_handler(payload)
 
-        serializer = UserSerializer(userproxy)
+        serializer = UserSerializer(user)
 
         body = {
             'token': token,
@@ -54,52 +54,41 @@ class GoogleRegisterView(APIView):
 
         # check if it is a returning user.
         try:
-            google_user = GoogleUser.objects.get(google_id=idinfo['sub'])
-            google_user.check_diff(idinfo)
-            userproxy = UserProxy.objects.get(id=google_user.app_user.id)
-            userproxy.check_diff(idinfo)
+            user = User.objects.get(google_id=idinfo['sub'])
+            user.check_diff(idinfo)
 
-        except GoogleUser.DoesNotExist:
+        except User.DoesNotExist:
             # proceed to create the user
 
-            userproxy = UserProxy(
+            user = User(
                 username=idinfo['name'],
                 email=idinfo["email"],
                 first_name=idinfo['given_name'],
-                last_name=idinfo['family_name']
+                last_name=idinfo['family_name'],
+                google_id=idinfo['sub'],
+                appuser_picture=idinfo['picture']
             )
-            userproxy.save()
+            user.save()
 
             # ensure every new user is given the least rights i.e.
             # those of a fellow
             my_group = Group.objects.get(name='Fellow')
-            my_group.user_set.add(userproxy)
-
-            google_user = GoogleUser(google_id=idinfo['sub'],
-                                     app_user=userproxy,
-                                     appuser_picture=idinfo['picture'])
-            google_user.save()
+            my_group.user_set.add(user)
 
         # automatically get token for the created/returning
         # user and log them in:
-        body = self.get_oauth_token(userproxy)
+        body = self.get_oauth_token(user)
         return Response(body, status=status.HTTP_201_CREATED)
 
 
 class GoogleUserView(GenericAPIView):
     """List Google User by Id."""
 
-    model = GoogleUser
-    serializer_class = GoogleUserSerializer
+    model = User
+    serializer_class = UserSerializer
 
     def get(self, request):
-        # import pdb;pdb.set_trace()
         id = self.request.user.id
         app_user = User.objects.get(id=id)
-        try:
-            google_user = GoogleUser.objects.get(app_user=app_user)
-        except GoogleUser.DoesNotExist:
-            raise Http404
-
-        serializer = GoogleUserSerializer(google_user)
+        serializer = UserSerializer(app_user)
         return Response(serializer.data)

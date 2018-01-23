@@ -1,7 +1,8 @@
 """This module imports django test configuration"""
 from django.test import TestCase
 
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
+from accounts.models import User
 from django.core.urlresolvers import reverse
 from rest_framework.test import APIClient
 from accounts.tests.tests import BaseAccountSetup
@@ -111,27 +112,38 @@ class BaseTestCase(TestCase, BaseAccountSetup):
 
         # create application users with different rights
         # fellow
-        self.fellow_user = User.objects.create(username="Fellow")
+        self.fellow_user = User.objects.create(
+            username="Fellow",
+            google_id=1)
         self.add_to_group('Fellow', self.fellow_user)
 
-        self.fellow_user_two = User.objects.create(username="Fellow2")
+        self.fellow_user_two = User.objects.create(
+            username="Fellow2",
+            google_id=2)
         self.add_to_group('Fellow', self.fellow_user_two)
 
         # fellow occupant
         self.fellow_user_occupant = User.objects.create(
-            username="FellowOccupant")
+            username="FellowOccupant",
+            google_id=3)
         self.add_to_group('FellowOccupant', self.fellow_user_occupant)
 
         # PNC
-        self.pnc_user = User.objects.create(username="PNC")
+        self.pnc_user = User.objects.create(
+            username="PNC",
+            google_id=4)
         self.add_to_group('PNC', self.pnc_user)
 
         # facilities admin
-        self.admin_user = User.objects.create(username="FacilitiesAdmin")
+        self.admin_user = User.objects.create(
+            username="FacilitiesAdmin",
+            google_id=5)
         self.add_to_group('FacilitiesAdmin', self.admin_user)
 
         # finance
-        self.finance_user = User.objects.create(username="Finance")
+        self.finance_user = User.objects.create(
+            username="Finance",
+            google_id=6)
         self.add_to_group('Finance', self.finance_user)
 
         # Initialize client and force it to use authentication
