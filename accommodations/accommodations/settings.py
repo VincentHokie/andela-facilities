@@ -94,10 +94,10 @@ WSGI_APPLICATION = 'accommodations.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'accommodations',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'PORT': 5432,
+        'NAME': os.environ["DB"],
+        'USER': os.environ["USER"],
+        'PASSWORD': os.environ["PASSWORD"],
+        'PORT': os.environ["PORT"],
         'TEST': {
             'CHARSET': 'UTF8',
             'NAME': 'accommodations_test_db'
