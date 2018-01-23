@@ -1,5 +1,15 @@
 # Andela Facilities
 
+[![Build Status](https://travis-ci.org/VincentHokie/andela-facilities.svg?branch=develop)](https://travis-ci.org/VincentHokie/andela-facilities)
+
+[![CircleCI](https://circleci.com/gh/VincentHokie/andela-facilities.svg?style=svg)](https://circleci.com/gh/VincentHokie/andela-facilities)
+
+[![Coverage Status](https://coveralls.io/repos/github/VincentHokie/andela-facilities/badge.svg?branch=develop)](https://coveralls.io/github/VincentHokie/andela-facilities?branch=develop)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/a5f37d2b7a0318dfd631/maintainability)](https://codeclimate.com/github/VincentHokie/andela-facilities/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a5f37d2b7a0318dfd631/test_coverage)](https://codeclimate.com/github/VincentHokie/andela-facilities/test_coverage)
+
 This is an application developed for Andela to manage fellows under their accomodation and the processes around it.
 
 Technologies
