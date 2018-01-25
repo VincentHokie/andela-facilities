@@ -23,7 +23,8 @@ before_script:
   
 # command to run tests
 script: 
-  - python accommodations/manage.py test
+  - cd accommodations
+  - python manage.py test
   - bundle exec rspec
 
 after_success:
