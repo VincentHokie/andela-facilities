@@ -1,34 +1,34 @@
-let webpack = require('webpack')
-let path = require('path')
+const webpack = require('webpack');
+const path = require('path');
 
-let parentDir = path.join(__dirname, '../')
+const parentDir = path.join(__dirname, '../');
 
 module.exports = {
-    // define js entry point i.e. what will be loaded by our base template directly
-    entry: [
-        path.join(parentDir, 'index.js')
-    ],
-    module: {
-        loaders: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader' // turn all .js and jsx files that are not in node_modules into the more compatible es5
-        },{
-            test: /\.scss$/,
-            loaders: [
-                "style-loader", // creates style nodes from JS strings
-                "css-loader", // translates CSS into CommonJS
-                "sass-loader" // compiles Sass to CSS
-            ]
-        }]
-    },
-    // defines where all our js will be bundled for use by react
-    output: {
-        path: parentDir + 'dist',
-        filename: 'bundle.js'
-    },
-    devServer: {
-        contentBase: parentDir,
-        historyApiFallback: true
-    }
-}
+  // define js entry point i.e. what will be loaded by our base template directly
+  entry: [
+    path.join(parentDir, 'index.jsx'),
+  ],
+  module: {
+    loaders: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader', // turn all .js and jsx files that are not in node_modules into the more compatible es5
+    }, {
+      test: /\.scss$/,
+      loaders: [
+        'style-loader', // creates style nodes from JS strings
+        'css-loader', // translates CSS into CommonJS
+        'sass-loader', // compiles Sass to CSS
+      ],
+    }],
+  },
+  // defines where all our js will be bundled for use by react
+  output: {
+    path: `${parentDir} /dist`,
+    filename: 'bundle.js',
+  },
+  devServer: {
+    contentBase: parentDir,
+    historyApiFallback: true,
+  },
+};
