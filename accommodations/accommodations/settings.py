@@ -41,10 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'accounts',
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
+    'space',
     'corsheaders',
+    'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -81,8 +80,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -96,11 +93,15 @@ WSGI_APPLICATION = 'accommodations.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':   'django.db.backends.postgresql',
-        'NAME':     'accommodations',
-        'USER':     'postgres',
-        'PASSWORD': '',
-        'TEST': {'CHARSET': 'UTF8'}
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ["DB"],
+        'USER': os.environ["USER"],
+        'PASSWORD': os.environ["PASSWORD"],
+        'PORT': os.environ["PORT"],
+        'TEST': {
+            'CHARSET': 'UTF8',
+            'NAME': 'accommodations_test_db'
+        }
     }
 }
 
@@ -153,8 +154,6 @@ REST_FRAMEWORK = {
 
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
 
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
     )
 }
 
@@ -167,15 +166,18 @@ JWT_AUTH = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    # django-rest-framework-social-oauth2
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
-
     # Django
     'django.contrib.auth.backends.ModelBackend',
-
-    'django.contrib.auth.backends.ModelBackend',
-    'social_core.backends.google.GooglePlusAuth',
 )
 
-SOCIAL_AUTH_GOOGLE_PLUS_KEY = '1086519642610-sqm534f7psu7ibgi788bqjjhllavij8v.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '2CNFtVbo_Br_Zprv1ogTDZry'
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-html',
+    '--cover-package=accomodations,accounts,space',
+]
+
+AUTH_USER_MODEL = 'accounts.User'

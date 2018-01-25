@@ -14,10 +14,10 @@ urlpatterns = [
     url(r'^auth/register/$', views.GoogleRegisterView.as_view(),
         name='auth_register'),
 
-    url(r'^auth/refresh/$', refresh_jwt_token,
+    url(r'^auth/refresh-token/$', refresh_jwt_token,
         name='auth_refresh'),
 
-    url(r'^auth/verify/$', verify_jwt_token,
+    url(r'^auth/verify-token/$', verify_jwt_token,
         name='auth_verify'),
 ]
 
