@@ -54,7 +54,12 @@ jobs:
             python accommodations/manage.py test
 
             ./cc-test-reporter before-build
-            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+            # ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+
+            ./cc-test-reporter format-coverage -t coverage.py -o ./.coverage
+            ./cc-test-reporter upload-coverage
+
+            ./cc-test-reporter after-build --exit-code $?
 
       - store_artifacts:
           path: test-reports
