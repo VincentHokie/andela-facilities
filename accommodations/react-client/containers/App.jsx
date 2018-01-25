@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import InputPreview from '../components/InputPreview';
+import InputPreview from '../components/InputPreview.jsx';
 import { connect } from 'react-redux';
-import { setMessage } from '../actions/message';
+import { setMessage } from '../actions/message.jsx';
 import Script from 'react-load-script';
-import { signIn } from '../actions/auth'
+import { signIn } from '../actions/auth.jsx'
 import { bindActionCreators } from 'redux'
 
 class App extends Component {
@@ -46,6 +46,7 @@ render() {
             <Link to='/about'>
                 <button>Go to About</button>
             </Link>*/}
+            <Link to='/about'>About</Link>
             <a href="#" onClick={this.signOut}>Sign out</a>
             <center><div id="my-signin2"></div></center>
             <Script
