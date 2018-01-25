@@ -33,7 +33,13 @@ jobs:
             python3 -m venv venv-django
             . venv-django/bin/activate
             pip install -r requirements.txt
-            
+      
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
       - save_cache:
           paths:
             - ./venv-django
@@ -46,6 +52,10 @@ jobs:
           command: |
             . venv-django/bin/activate
             python accommodations/manage.py test
+
+            ./cc-test-reporter before-build
+            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+
       - store_artifacts:
           path: test-reports
           destination: test-reports
