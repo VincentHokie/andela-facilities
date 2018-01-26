@@ -63,6 +63,17 @@ class CreateSpace(
     """
     permission_classes = (IsAuthenticated, IsFacilitiesManager)
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(
+                {"formError": serializer.errors},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
     def post(self, request, *args, **kwargs):
         """
             handle request with post method
@@ -77,6 +88,24 @@ class UpdateDeleteSpace(
     This class defines the update and delete behaviour on the Space model
     """
     permission_classes = (IsAuthenticated, IsFacilitiesManager)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=partial)
+        if not serializer.is_valid():
+            return Response(
+                {"formError": serializer.errors},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
 
     def delete(self, request, *args, **kwargs):
         """
@@ -184,7 +213,10 @@ class CreateRoom(
         request.data["space"] = space
 
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(
+                {"formError": serializer.errors},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(
@@ -219,7 +251,10 @@ class UpdateRoom(
 
         serializer = self.get_serializer(
             instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(
+                {"formError": serializer.errors},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         self.perform_update(serializer)
 
         if getattr(instance, '_prefetched_objects_cache', None):
@@ -340,7 +375,10 @@ class CreateOccupant(
         request.data["room"] = room
 
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(
+                {"formError": serializer.errors},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(
@@ -374,7 +412,10 @@ class UpdateOccupant(
 
         serializer = self.get_serializer(
             instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(
+                {"formError": serializer.errors},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         self.perform_update(serializer)
 
         if getattr(instance, '_prefetched_objects_cache', None):
