@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import messageReducer from './reducers/message.jsx';
+import baseReducer from './reducers/base.jsx';
+import modalReducer from './reducers/modal.jsx';
 
 const reducer = combineReducers({
-  messageReducer,
+  baseReducer,
+  modalReducer,
 });
 
 const store = createStore(
