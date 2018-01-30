@@ -14,7 +14,7 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader', // turn all .js and jsx files that are not in node_modules into the more compatible es5
     }, {
-      test: /\.scss$/,
+      test: /\.(css|scss)$/,
       loaders: [
         'style-loader', // creates style nodes from JS strings
         'css-loader', // translates CSS into CommonJS
