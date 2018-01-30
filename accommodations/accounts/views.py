@@ -24,6 +24,7 @@ from .errors import unauthorized
 class GoogleRegisterView(APIView):
 
     permission_classes = (AllowAny,)
+    authentication_classes = []
 
     def get_oauth_token(self, user):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
