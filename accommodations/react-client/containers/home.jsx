@@ -9,7 +9,7 @@ import Base from './base.jsx';
 import InputField from '../components/InputField.jsx';
 
 
-class About extends Base {
+class Home extends Base {
 
   signOut = () => {
     this.props.signOut(this.props);
@@ -61,5 +61,5 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(About);
+)(Home);
 

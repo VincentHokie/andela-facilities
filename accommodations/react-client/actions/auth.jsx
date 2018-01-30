@@ -50,7 +50,7 @@ export const signIn = (googleUser, props, googleApi) => {
 
         // rediect the user
         setTimeout(() => {
-          props.history.push('/about');
+          props.history.push('/home');
         }, 1000);
       })
       .catch((err) => {
