@@ -11,7 +11,7 @@ const InputField = props => (
       </span>
       {props.error ?
         <span className="icon is-small is-right">
-          <i className="fas fa-exclamation-triangle" />
+          <i className="fas fa-exclamation-triangle" style={{ color: 'red' }} />
         </span>
         : ''}
     </div>
