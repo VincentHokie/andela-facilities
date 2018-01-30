@@ -1,0 +1,11 @@
+.navbar-start > .navbar-item, .navbar-start > .navbar-item > .navbar-link, .navbar-end .navbar-item { 
+    color: #fff !important; font-weight:500
+}
+
+.css-k0o5uw, [data-css-k0o5uw] {
+    background-image: url("/static/images/notify-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    color: #fff !important;
+}

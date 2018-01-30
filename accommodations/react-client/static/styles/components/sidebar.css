@@ -1,0 +1,16 @@
+aside.menu{
+    padding: 30px;
+    margin: 0;
+    border-right: 2px solid #eee;
+    margin-top: 10px
+}
+
+i.fa{
+    font-size: 16px;
+    padding: 0 10px;
+    float: right;
+}
+
+.menu-label:not(:last-child) {
+    margin-bottom: 0;
+}
