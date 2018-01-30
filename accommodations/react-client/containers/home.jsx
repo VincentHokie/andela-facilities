@@ -15,13 +15,6 @@ class Home extends Base {
     this.props.signOut(this.props);
   }
 
-  spaceForm = () => {
-    let space = { "space_name": "this field is required!" };
-    return (
-      <InputField name="space_name" type="text" label="Space Name" error={space} />
-    )
-  }
-
   render() {
     return (
       <div>

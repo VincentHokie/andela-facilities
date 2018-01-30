@@ -21,7 +21,7 @@ export default (state = initState, action) => {
     case SIGNOUT_SUCCESS:
       return {
         ...state,
-        toekn: '',
+        token: '',
         user: {},
       };
     case SHOW_NOTIFICATION:
