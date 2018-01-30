@@ -1,13 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import App from './containers/App.jsx';
+import { ToastContainer } from 'react-toastify';
+import Login from './containers/Login.jsx';
 import About from './containers/About.jsx';
 
 export default () => (
   <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/about" component={About} />
-    </Switch>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route path="/about" component={About} />
+      </Switch>
+      <ToastContainer />
+    </div>
   </BrowserRouter>
 );
