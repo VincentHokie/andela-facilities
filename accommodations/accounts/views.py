@@ -46,12 +46,8 @@ class GoogleRegisterView(APIView):
         # pass token to get google info/ an error if the checks dont pass
         idinfo = resolve_google_oauth(request)
 
-        try:
-            if isinstance(idinfo.data, dict()):
-                return Response(idinfo.data)
-        except Exception as e:
-            # handle error here for when it comes from resolve_google_oauth()
-            pass
+        if isinstance(idinfo, Response):
+            return idinfo
 
         # check if it is a returning user.
         try:
