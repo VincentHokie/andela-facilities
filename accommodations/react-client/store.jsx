@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import baseReducer from './reducers/base.jsx';
+import baseReducer from './reducers/notification.jsx';
 import modalReducer from './reducers/modal.jsx';
 
 const reducer = combineReducers({
