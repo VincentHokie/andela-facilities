@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { SIGNIN_FAILURE, SIGNIN_SUCCESS, SIGNOUT_SUCCESS } from '../types/auth.jsx';
-import CustomToast from "../components/custom_toast.jsx";
+import CustomToast from "../components/miscellaneous/custom_toast.jsx";
 
 const logout = (dispatch, gapi, props, showToast=false) => {
   const googleAuth = gapi.auth2.getAuthInstance();

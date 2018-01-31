@@ -1,11 +1,11 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import '../static/styles/components/sidebar.css';
-import Modal from '../components/modal.jsx';
-import Base from '../containers/base.jsx';
-import { showNewSpaceForm, hideModal } from '../actions/modalForm.jsx';
-import SpaceService from '../actions/spaceService.jsx';
+import '../../static/styles/components/sidebar.css';
+import Modal from './modal.jsx';
+import Base from '../../containers/base.jsx';
+import { showNewSpaceForm, hideModal } from '../../actions/modalForm.jsx';
+import SpaceService from '../../actions/spaceService.jsx';
 
 class SideBar extends Base {
   render() {

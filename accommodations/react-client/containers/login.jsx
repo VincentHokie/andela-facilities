@@ -6,7 +6,7 @@ import { signIn, signOut } from '../actions/auth.jsx'
 import { bindActionCreators } from 'redux'
 import Base from './base.jsx';
 import { toast } from 'react-toastify';
-import CustomToast from "../components/custom_toast.jsx";
+import CustomToast from '../components/miscellaneous/custom_toast.jsx';
 
 class Login extends Base {
 

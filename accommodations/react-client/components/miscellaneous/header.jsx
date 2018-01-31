@@ -1,5 +1,5 @@
 import React from 'react';
-import '../static/styles/components/header.css';
+import '../../static/styles/components/header.css';
 
 const Header = props => (
   <div className="column is-12" style={{ padding: '0', paddingBottom: '0.75rem' }}>

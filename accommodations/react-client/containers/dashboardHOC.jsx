@@ -2,8 +2,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Header from '../components/header.jsx';
-import SideBar from '../components/sidebar.jsx';
+import Header from '../components/miscellaneous/header.jsx';
+import SideBar from '../components/miscellaneous/sidebar.jsx';
 import { signOut } from '../actions/auth.jsx'
 import Base from './base.jsx';
 import { hideNotification } from '../actions/notification.jsx';
