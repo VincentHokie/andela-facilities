@@ -31,8 +31,8 @@ function DashboardWrapper(Component, passedActions, passedState) {
                 </div>
                 : ''}
             </div>
-            <div className="column is-half-mobile is-two-thirds-tablet is-three-quarters-desktop is-four-fifths-widescreen is-four-fifths-fullhd">
-                { Component ? <Component /> : '' }
+            <div style={{ padding: "30px" }} className="column is-half-mobile is-two-thirds-tablet is-three-quarters-desktop is-four-fifths-widescreen is-four-fifths-fullhd">
+              {Component ? <Component /> : ''}
             </div>
           </div>
         </div>
