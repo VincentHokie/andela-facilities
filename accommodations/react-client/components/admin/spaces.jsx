@@ -1,6 +1,6 @@
 import React from 'react';
-import Base from '../containers/base.jsx';
-import DashboardWrapper from '../containers/dashboardHOC.jsx';
+import Base from '../../containers/base.jsx';
+import DashboardWrapper from '../../containers/dashboardHOC.jsx';
 
 class Spaces extends Base {
   render() {
