@@ -27,7 +27,7 @@ function DashboardWrapper(Component, passedActions, passedState) {
               { this.props.notification && this.props.notificationType ? 
                 <Notification notification={this.props.notification} notificationType={this.props.notificationType} close={this.props.hideNotification} /> : '' }
               <div className="column is-fullwidth">
-                {Component ? <Component /> : ''}
+                {Component ? <Component {...this.props} /> : ''}
               </div>
             </div>
           </div>
