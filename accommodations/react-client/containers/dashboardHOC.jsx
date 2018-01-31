@@ -6,7 +6,9 @@ import Header from '../components/header.jsx';
 import SideBar from '../components/sidebar.jsx';
 import { signOut } from '../actions/auth.jsx'
 import Base from './base.jsx';
+import { hideNotification } from '../actions/notification.jsx';
 import InputField from '../components/InputField.jsx';
+import Notification from '../components/miscellaneous/notification.jsx';
 
 function DashboardWrapper(Component, passedActions, passedState) {
   class BaseFilter extends Base {
@@ -20,19 +22,13 @@ function DashboardWrapper(Component, passedActions, passedState) {
         <div>
           <Header signOut={this.signOut} />
           <div className="columns">
-            <SideBar />
-            <div className="column">
-              {this.props.notification && this.props.notificationType ?
-                <div className="columns is-mobile is-centered">
-                  <div className={"notification column is-half-mobile is-two-thirds-tablet is-three-quarters-desktop is-three-fifths-widescreen is-three-fifths-fullhd " + (this.props.notificationType && this.props.notificationType == 'success' ? 'is-success' : 'is-danger')}>
-                    <button className="delete" onClick={this.props.closeNotification}></button>
-                    {this.props.notification}
-                  </div>
-                </div>
-                : ''}
-            </div>
-            <div style={{ padding: "30px" }} className="column is-half-mobile is-two-thirds-tablet is-three-quarters-desktop is-four-fifths-widescreen is-four-fifths-fullhd">
-              {Component ? <Component /> : ''}
+            <SideBar push={this.pushNavigation} />
+            <div className="column is-half-mobile is-two-thirds-tablet is-three-quarters-desktop is-four-fifths-widescreen is-four-fifths-fullhd">
+              { this.props.notification && this.props.notificationType ? 
+                <Notification notification={this.props.notification} notificationType={this.props.notificationType} close={this.props.hideNotification} /> : '' }
+              <div className="column is-fullwidth">
+                {Component ? <Component /> : ''}
+              </div>
             </div>
           </div>
         </div>
@@ -42,6 +38,7 @@ function DashboardWrapper(Component, passedActions, passedState) {
 
   const mapDispatchToProps = dispatch => bindActionCreators({
     signOut,
+    hideNotification,
     ...passedActions,
   }, dispatch);
 
@@ -52,6 +49,8 @@ function DashboardWrapper(Component, passedActions, passedState) {
     show: state.modalReducer.show,
     modalTitle: state.modalReducer.modalTitle,
     buttonLabel: state.modalReducer.buttonLabel,
+    notification: state.baseReducer.notification,
+    notificationType: state.baseReducer.notificationType,
     ...passedState,
   });
 
