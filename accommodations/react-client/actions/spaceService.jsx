@@ -31,21 +31,11 @@ function createSpace(event) {
           notificationType: 'success',
         },
       });
-
-      // // rediect the user
-      // setTimeout(() => {
-      //   props.history.push('/about');
-      // }, 1000);
     }).catch((error) => {
       dispatch({
         type: SHOW_MODAL_FORM_ERROR,
         payload: { error: error.data.formError },
       });
-
-      // // ensure google user is logged out
-      // dispatch({
-      //   type: SIGNIN_FAILURE,
-      // });
     })
   );
 }
