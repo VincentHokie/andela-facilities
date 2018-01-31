@@ -14,26 +14,26 @@ class SideBar extends Base {
         <aside className="menu">
           <p className="menu-label">General</p>
           <ul className="menu-list">
-            <li><a>Users & Permisisons</a></li>
+            <li><a href="/users" onClick={this.props.push}>Users & Permisisons</a></li>
           </ul>
 
           <p className="menu-label">Space
       <i className="fa fa-plus-circle" aria-hidden="true" onClick={this.props.showNewSpaceForm}></i>
           </p>
           <ul className="menu-list">
-            <li><a>See spaces</a></li>
+            <li><a href="/spaces/view" onClick={this.props.push}>See spaces</a></li>
           </ul>
           <p className="menu-label">Rooms
       <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </p>
           <ul className="menu-list">
-            <li><a>View Rooms</a></li>
+            <li><a href="/rooms/view" onClick={this.props.push}>View Rooms</a></li>
           </ul>
           <p className="menu-label">Assign Rooms
       <i className="fa fa-plus-circle" aria-hidden="true"></i>
           </p>
           <ul className="menu-list">
-            <li><a>View Occupants</a></li>
+            <li><a href="/occupants/view" onClick={this.props.push}>View Occupants</a></li>
           </ul>
           <p className="menu-label">General</p>
           <ul className="menu-list">
