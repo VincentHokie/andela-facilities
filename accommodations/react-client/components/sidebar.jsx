@@ -60,7 +60,7 @@ class SideBar extends Base {
 const mapDispatchToProps = dispatch => bindActionCreators({
   showNewSpaceForm,
   hideModal,
-  createSpace: SpaceService.createSpace,
+  ...SpaceService,
 }, dispatch);
 
 const mapStateToProps = state => ({
