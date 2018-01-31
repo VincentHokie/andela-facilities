@@ -2,7 +2,7 @@ import React from 'react';
 import '../static/styles/components/header.css';
 
 const Header = props => (
-  <div>
+  <div className="column is-12" style={{ padding: '0', paddingBottom: '0.75rem' }}>
     <nav className="navbar is-transparent" style={{ backgroundImage: 'url("/static/images/header.png")', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', width: '100%' }}>
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
