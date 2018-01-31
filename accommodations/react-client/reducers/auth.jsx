@@ -1,5 +1,4 @@
 import { SIGNIN_SUCCESS, SIGNOUT_SUCCESS } from '../types/auth.jsx';
-import { SHOW_NOTIFICATION, HIDE_NOTIFICATION } from '../types/base.jsx';
 
 const initState = {
   token: '',
@@ -23,18 +22,6 @@ export default (state = initState, action) => {
         ...state,
         token: '',
         user: {},
-      };
-    case SHOW_NOTIFICATION:
-      return {
-        ...state,
-        notification: action.payload.notification,
-        notificationType: action.payload.notificationType,
-      };
-    case HIDE_NOTIFICATION:
-      return {
-        ...state,
-        notification: false,
-        notificationType: false,
       };
     default:
       return state;
