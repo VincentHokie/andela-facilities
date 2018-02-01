@@ -85,4 +85,4 @@ class Rooms extends Base {
   }
 }
 
-export default DashboardWrapper(Rooms, {}, {});
+export default DashboardWrapper(Rooms, {}, (state) => {});

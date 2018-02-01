@@ -51,7 +51,7 @@ function DashboardWrapper(Component, passedActions, passedState) {
     buttonLabel: state.modalReducer.buttonLabel,
     notification: state.baseReducer.notification,
     notificationType: state.baseReducer.notificationType,
-    ...passedState,
+    ...passedState(state),
   });
 
   return connect(

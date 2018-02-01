@@ -92,4 +92,4 @@ class Occupants extends Base {
   }
 }
 
-export default DashboardWrapper(Occupants, {}, {});
+export default DashboardWrapper(Occupants, {}, (state) => {});

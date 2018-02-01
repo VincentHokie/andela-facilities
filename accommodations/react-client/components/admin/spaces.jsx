@@ -64,4 +64,9 @@ class Spaces extends Base {
   }
 }
 
-export default DashboardWrapper(Spaces, {}, {});
+export default DashboardWrapper(
+  Spaces,
+  { ...SpaceService },
+  state => ({
+    spaces: state.dataReducer.spaces,
+  }));
