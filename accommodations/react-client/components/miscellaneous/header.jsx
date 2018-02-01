@@ -15,7 +15,7 @@ const Header = props => (
         </div>
       </div>
 
-      <div id="navbarExampleTransparentExample" className="navbar-menu" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+      <div id="navbarExampleTransparentExample" className="navbar-menu" style={{ backgroundColor: 'rgba(0,0,0,0.1)' }}>
         <div className="navbar-start">
           <a className="navbar-item" href="https://bulma.io/">Home</a>
           <div className="navbar-item has-dropdown is-hoverable">
