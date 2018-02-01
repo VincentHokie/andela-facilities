@@ -1,8 +1,14 @@
 import React from 'react';
 import Base from '../../containers/base.jsx';
 import DashboardWrapper from '../../containers/dashboardHOC.jsx';
+import SpaceService from '../../actions/spaceService.jsx';
+import SpaceRow from '../subcomponents/space.jsx';
 
 class Spaces extends Base {
+  componentDidMount() {
+    this.props.getSpace();
+  }
+
   render() {
     return (
       <div>
@@ -26,37 +32,10 @@ class Spaces extends Base {
             </tr>
           </tfoot>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-              </td>
-              <th><i className="fa fa-edit" aria-hidden="true"></i></th>
-              <th><i className="fa fa-trash" aria-hidden="true"></i></th>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
-              <th><i className="fa fa-edit" aria-hidden="true"></i></th>
-              <th><i className="fa fa-trash" aria-hidden="true"></i></th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
-              <th><i className="fa fa-edit" aria-hidden="true"></i></th>
-              <th><i className="fa fa-trash" aria-hidden="true"></i></th>
-            </tr>
-            <tr className="is-selected">
-              <th>4</th>
-              <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
-              <th><i className="fa fa-edit" aria-hidden="true"></i></th>
-              <th><i className="fa fa-trash" aria-hidden="true"></i></th>
-            </tr>
-            <tr>
-              <th>5</th>
-              <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
-              <th><i className="fa fa-edit" aria-hidden="true"></i></th>
-              <th><i className="fa fa-trash" aria-hidden="true"></i></th>
-            </tr>
+            {this.props.spaces ? this.props.spaces.map((space, i) => (
+              <SpaceRow space={space} index={i} />
+            )) : ''
+            }
           </tbody>
         </table >
       </div>
