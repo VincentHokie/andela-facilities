@@ -24,7 +24,7 @@ module.exports = {
   },
   // defines where all our js will be bundled for use by react
   output: {
-    path: `${parentDir} /dist`,
+    path: path.join(parentDir, 'dist'),
     filename: 'bundle.js',
   },
   devServer: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import Login from './containers/Login.jsx';
+import Login from './containers/login.jsx';
 import Home from './containers/home.jsx';
 import Users from './components/admin/usersAndPermissions.jsx';
 import Spaces from './components/admin/spaces.jsx';
